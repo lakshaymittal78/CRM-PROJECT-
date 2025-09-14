@@ -1,9 +1,17 @@
+# dependencies
 node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# env files
 .env
-dist/
+frontend/.env
+backend/.env
+
+# build outputs
 build/
+dist/
+
+# misc
 .vscode/
 .DS_Store
-npm-debug.log
-yarn-error.log
-coverage/
