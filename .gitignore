@@ -1,17 +1,17 @@
-﻿# node / js
+﻿# Node
 node_modules/
 frontend/node_modules/
 backend/node_modules/
 
-# env
+# Env files
 .env
 frontend/.env
 backend/.env
 
-# build
+# Build
 build/
 dist/
 
-# editor/os
+# Editor/OS
 .vscode/
 .DS_Store
