@@ -1,0 +1,94 @@
+/* TODO: Copy Navbar CSS from the "Main CSS Styles" or "Component CSS Styles" artifacts */
+
+/* Navbar.css */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  z-index: 1000;
+  height: 80px;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.navbar-brand .brand-link {
+  text-decoration: none;
+  color: #1a202c;
+}
+
+.navbar-brand h2 {
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #64748b;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #3b82f6;
+  background-color: #f1f5f9;
+}
+
+.nav-link.active {
+  color: #3b82f6;
+  background-color: #dbeafe;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #e2e8f0;
+}
+
+.user-name {
+  font-weight: 500;
+  color: #374151;
+}
+
+.logout-btn {
+  padding: 8px 16px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}

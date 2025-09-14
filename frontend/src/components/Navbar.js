@@ -1,9 +1,12 @@
+// components/Navbar.js
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import './Navbar.css';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -11,48 +14,51 @@ const Navbar = () => {
     navigate('/login');
   };
 
+  const isActive = (path) => location.pathname === path;
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div className="container-fluid">
-        <Link className="navbar-brand fw-bold" to="/">
-          Xeno CRM
-        </Link>
+    <nav className="navbar">
+      <div className="navbar-container">
+        <div className="navbar-brand">
+          <Link to="/dashboard" className="brand-link">
+            <h2>Xeno CRM</h2>
+          </Link>
+        </div>
         
-        <button 
-          className="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarNav"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav me-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Dashboard
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/campaigns">
-                Campaigns
-              </Link>
-            </li>
-          </ul>
-          
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <span className="navbar-text me-3">
-                Welcome, {user?.name || 'User'}!
-              </span>
-            </li>
-            <li className="nav-item">
-              <button className="btn btn-outline-light" onClick={handleLogout}>
+        <div className="navbar-nav">
+          <Link 
+            to="/dashboard" 
+            className={`nav-link ${isActive('/dashboard') ? 'active' : ''}`}
+          >
+            Dashboard
+          </Link>
+          <Link 
+            to="/campaigns" 
+            className={`nav-link ${isActive('/campaigns') || isActive('/campaigns/create') ? 'active' : ''}`}
+          >
+            Campaigns
+          </Link>
+        </div>
+
+        <div className="navbar-user">
+          {user && (
+            <div className="user-info">
+              {user.picture && (
+                <img 
+                  src={user.picture} 
+                  alt="Profile" 
+                  className="user-avatar"
+                />
+              )}
+              <span className="user-name">{user.name}</span>
+              <button 
+                onClick={handleLogout} 
+                className="logout-btn"
+              >
                 Logout
               </button>
-            </li>
-          </ul>
+            </div>
+          )}
         </div>
       </div>
     </nav>

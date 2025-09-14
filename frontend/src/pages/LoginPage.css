@@ -1,0 +1,107 @@
+/* TODO: Copy LoginPage CSS from the "Main CSS Styles" or "Component CSS Styles" artifacts */
+
+/* LoginPage.css */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.login-card {
+  background: white;
+  padding: 48px;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  max-width: 500px;
+  width: 100%;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.login-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 8px;
+}
+
+.login-header p {
+  color: #64748b;
+  font-size: 16px;
+}
+
+.google-signin-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.loading-overlay .spinner {
+  width: 24px;
+  height: 24px;
+  margin-right: 0;
+  margin-bottom: 8px;
+}
+
+.error-message {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.login-features {
+  margin-bottom: 32px;
+}
+
+.login-features h3 {
+  color: #374151;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.login-features ul {
+  list-style: none;
+  space-y: 8px;
+}
+
+.login-features li {
+  color: #64748b;
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+
+.login-footer {
+  text-align: center;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.login-footer p {
+  color: #9ca3af;
+  font-size: 14px;
+}

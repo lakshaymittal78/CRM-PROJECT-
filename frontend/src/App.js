@@ -1,57 +1,90 @@
+// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-toastify/dist/ReactToastify.css';
-
-import Navbar from './components/Navbar';
-import Dashboard from './pages/Dashboard';
-import Campaigns from './pages/Campaigns';
-import Login from './pages/Login';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import Navbar from './components/Navbar';
+import LoginPage from './pages/LoginPage';
+import DashboardPage from './pages/DashboardPage';
+import CampaignsPage from './pages/CampaignsPage';
+import CreateCampaignPage from './pages/CreateCampaignPage';
+import './App.css';
+
+// Protected Route Component
+const ProtectedRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+  
+  if (loading) {
+    return <div className="loading-spinner">Loading...</div>;
+  }
+  
+  return user ? children : <Navigate to="/login" />;
+};
+
+// Public Route Component (redirect if logged in)
+const PublicRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+  
+  if (loading) {
+    return <div className="loading-spinner">Loading...</div>;
+  }
+  
+  return !user ? children : <Navigate to="/dashboard" />;
+};
+
+function AppContent() {
+  const { user } = useAuth();
+
+  return (
+    <div className="App">
+      {user && <Navbar />}
+      <main className="main-content">
+        <Routes>
+          <Route 
+            path="/login" 
+            element={
+              <PublicRoute>
+                <LoginPage />
+              </PublicRoute>
+            } 
+          />
+          <Route 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute>
+                <DashboardPage />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/campaigns" 
+            element={
+              <ProtectedRoute>
+                <CampaignsPage />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/campaigns/create" 
+            element={
+              <ProtectedRoute>
+                <CreateCampaignPage />
+              </ProtectedRoute>
+            } 
+          />
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+        </Routes>
+      </main>
+    </div>
+  );
+}
 
 function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="App">
-          <AppContent />
-          <ToastContainer 
-            position="top-right" 
-            autoClose={3000}
-            hideProgressBar={false}
-            closeOnClick
-            pauseOnHover
-          />
-        </div>
+        <AppContent />
       </Router>
     </AuthProvider>
-  );
-}
-
-function AppContent() {
-  const { isAuthenticated } = useAuth();
-
-  if (!isAuthenticated) {
-    return (
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
-    );
-  }
-
-  return (
-    <>
-      <Navbar />
-      <div className="container-fluid mt-4">
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/campaigns" element={<Campaigns />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </div>
-    </>
   );
 }
 

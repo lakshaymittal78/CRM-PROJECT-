@@ -8,10 +8,12 @@
 // =============================================
 
 const express = require('express');
-const router = express.Router();
+const routerAuth = express.Router();
 const Customer = require('../models/Customer');
 const Order = require('../models/Order');
 
+// server.js or app.js
+app.use('/api/dashboard', require('./routes/dashboard'));
 // GET /api/customers - Get all customers with filtering
 router.get('/', async (req, res) => {
   try {
@@ -146,7 +148,7 @@ module.exports = router;
 // =============================================
 
 const express = require('express');
-const router = express.Router();
+const routerCustomers = express.Router();
 const Order = require('../models/Order');
 const Customer = require('../models/Customer');
 
@@ -272,7 +274,7 @@ module.exports = router;
 // =============================================
 
 const express = require('express');
-const router = express.Router();
+const routerCampaigns = express.Router();
 const Campaign = require('../models/Campaign');
 const CommunicationLog = require('../models/CommunicationLog');
 const Customer = require('../models/Customer');
@@ -460,7 +462,7 @@ module.exports = router;
 // =============================================
 
 const express = require('express');
-const router = express.Router();
+const routerOrders = express.Router();
 const AIService = require('../services/aiService');
 
 // POST /api/ai/natural-to-rules - Convert natural language to MongoDB rules
@@ -547,7 +549,7 @@ module.exports = router;
 // =============================================
 
 const express = require('express');
-const router = express.Router();
+const routerSegments = express.Router();
 const axios = require('axios');
 
 // POST /api/vendor/send-message - Mock vendor API that simulates message delivery
@@ -591,6 +593,7 @@ router.post('/send-message', async (req, res) => {
     res.status(500).json({ success: false, error: error.message });
   }
 });
+
 
 // POST /api/vendor/delivery-receipt - Receive delivery receipts from vendor
 router.post('/delivery-receipt', async (req, res) => {
@@ -670,7 +673,7 @@ module.exports = router;
 // =============================================
 
 const express = require('express');
-const router = express.Router();
+const routerDashboard = express.Router();
 const jwt = require('jsonwebtoken');
 
 // POST /api/auth/login - Simple login (we'll add Google OAuth later)
