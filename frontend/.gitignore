@@ -12,10 +12,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-[submodule "Xeno"]
-    path = Xeno
-    url = https://github.com/<username-or-org>/<Xeno-repo>.git
-
 
 # Env files (never commit secrets)
 .env
