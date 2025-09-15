@@ -1,0 +1,3 @@
+[submodule "Xeno"]
+    path = Xeno
+    url = https://github.com/<your-username>/<Xeno-repo>.git
